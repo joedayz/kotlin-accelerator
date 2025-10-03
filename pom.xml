@@ -30,6 +30,13 @@
             <version>${kotlin.version}</version>
         </dependency>
 
+        <!-- Kotlin Reflection -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+
         <!-- Kotlin Coroutines -->
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
@@ -90,12 +97,6 @@
                 </executions>
                 <configuration>
                     <jvmTarget>21</jvmTarget>
-                    <sourceDirs>
-                        <sourceDir>src/main/java</sourceDir>
-                    </sourceDirs>
-                    <testSourceDirs>
-                        <testSourceDir>src/test/java</testSourceDir>
-                    </testSourceDirs>
                 </configuration>
             </plugin>
 

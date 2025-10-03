@@ -1,4 +1,4 @@
-package com.josediaz.kotlinaccelerator.advanced
+package com.josediaz.kotlinaccelerator
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
@@ -378,9 +378,7 @@ class AdvancedKotlinTopics {
         println("String class is data class: ${stringClass.isData}")
         
         // 🔥 FUNCTION REFLECTION: Inspect function information
-        fun add(a: Int, b: Int): Int = a + b
-        
-        val addFunction = ::add
+        val addFunction = ::processUser
         println("Function name: ${addFunction.name}")
         println("Function parameters: ${addFunction.parameters.map { it.name }}")
         println("Function return type: ${addFunction.returnType}")
