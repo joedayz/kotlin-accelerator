@@ -1,4 +1,4 @@
-package com.josediaz.kotlinaccelerator.testing
+package com.josediaz.kotlinaccelerator
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
@@ -38,10 +38,10 @@ class SimpleTest {
         assertEquals(0, safeLength)
         
         // Test data class
-        val person = Person("Alice", 25, "alice@example.com")
+        val person = Person("Alice", 25, "Engineering")
         assertEquals("Alice", person.name)
         assertEquals(25, person.age)
-        assertEquals("alice@example.com", person.email)
+        assertEquals("Engineering", person.department)
         
         // Test collections
         val numbers = listOf(1, 2, 3, 4, 5)
@@ -55,9 +55,3 @@ class SimpleTest {
     
     private fun add(a: Int, b: Int): Int = a + b
 }
-
-data class Person(
-    val name: String,
-    val age: Int,
-    val email: String? = null
-)

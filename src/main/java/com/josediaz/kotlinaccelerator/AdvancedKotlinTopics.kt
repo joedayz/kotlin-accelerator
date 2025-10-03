@@ -32,6 +32,110 @@ import kotlin.system.measureTimeMillis
  */
 class AdvancedKotlinTopics {
     
+    fun demonstrateVariablesAndNullSafety() {
+        println("=== Variables and Null Safety ===")
+        
+        // 🎯 VARIABLES: val vs var (immutable vs mutable)
+        val immutableName = "Alice"           // val = final in Java
+        var mutableAge = 25                   // var = regular variable in Java
+        
+        // immutableName = "Bob"              // ❌ Compilation error - val cannot be reassigned
+        mutableAge = 26                       // ✅ OK - var can be reassigned
+        
+        println("Name: $immutableName, Age: $mutableAge")
+        
+        // 🔥 TYPE INFERENCE: Kotlin infers types automatically
+        val inferredString = "Hello World"    // Type: String
+        val inferredNumber = 42               // Type: Int
+        val inferredList = listOf(1, 2, 3)    // Type: List<Int>
+        
+        println("Inferred types: $inferredString, $inferredNumber, $inferredList")
+        
+        // 🚀 NULL SAFETY: The killer feature of Kotlin
+        val nonNullString: String = "Hello"   // Cannot be null
+        val nullableString: String? = null    // Can be null (note the ?)
+        
+        // nonNullString = null               // ❌ Compilation error - cannot assign null
+        
+        // 🎯 SAFE CALL OPERATOR: ?.
+        val length1 = nonNullString.length    // Direct access - safe
+        val length2 = nullableString?.length  // Safe call - returns null if nullableString is null
+        
+        println("Length 1: $length1, Length 2: $length2")
+        
+        // 🔥 ELVIS OPERATOR: ?: (null coalescing)
+        val safeLength = nullableString?.length ?: 0  // Use 0 if null
+        val defaultName = nullableString ?: "Unknown" // Use "Unknown" if null
+        
+        println("Safe length: $safeLength, Default name: $defaultName")
+        
+        // 🚀 NOT-NULL ASSERTION: !! (use with caution)
+        // val forcedLength = nullableString!!.length    // This would throw NPE since nullableString is null
+        // This is dangerous! Only use when you're 100% sure it's not null
+        
+        // Example of safe usage of !! operator
+        val safeString: String? = "Hello"
+        val forcedLength = safeString!!.length    // Safe because we know it's not null
+        println("Forced length: $forcedLength")
+        
+        // 🎯 SMART CASTS: Automatic casting after null checks
+        fun processString(str: String?) {
+            if (str != null) {
+                // str is automatically cast to String (non-null) here
+                println("String length: ${str.length}")  // No ? needed
+                println("String uppercase: ${str.uppercase()}")
+            }
+        }
+        
+        processString("Hello")
+        processString(null)
+        
+        // 🔥 LET FUNCTION: Execute code only if not null
+        nullableString?.let { str ->
+            println("String is not null: $str")
+            println("Length: ${str.length}")
+        }
+        
+        // Example with non-null value
+        val nonNullValue: String? = "Hello World"
+        nonNullValue?.let { str ->
+            println("String is not null: $str")
+            println("Length: ${str.length}")
+        }
+        
+        // 🚀 ALSO FUNCTION: Execute side effects
+        val result = "Hello".also { str ->
+            println("Processing: $str")
+        }.uppercase()
+        
+        println("Result: $result")
+        
+        // 🎯 APPLY FUNCTION: Configure objects
+        val person = Person("", 0, "").apply {
+            name = "Alice"
+            age = 25
+            department = "Engineering"
+        }
+        
+        println("Person: $person")
+        
+        // 🔥 RUN FUNCTION: Execute block and return result
+        val personInfo = person.run {
+            "Name: $name, Age: $age, Department: $department"
+        }
+        
+        println("Person info: $personInfo")
+        
+        // 🚀 WITH FUNCTION: Execute multiple operations on an object
+        val formattedInfo = with(person) {
+            "Employee: $name ($age years old) works in $department"
+        }
+        
+        println("Formatted info: $formattedInfo")
+        
+        println("=== End Variables and Null Safety ===\n")
+    }
+    
     fun demonstrateAdvancedCollections() {
         println("=== Advanced Collections and Functional Programming ===")
         
@@ -402,9 +506,9 @@ class AdvancedKotlinTopics {
 
 // 🔥 DATA CLASS FOR EXAMPLES
 data class Person(
-    val name: String,
-    val age: Int,
-    val department: String
+    var name: String,
+    var age: Int,
+    var department: String
 )
 
 // 🎯 SEALED CLASSES FOR EXAMPLES

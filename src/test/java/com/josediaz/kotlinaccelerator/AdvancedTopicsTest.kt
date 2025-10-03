@@ -7,6 +7,14 @@ import kotlinx.coroutines.runBlocking
 class AdvancedTopicsTest {
 
     @Test
+    fun `variables and null safety`() {
+        val topics = AdvancedKotlinTopics()
+        topics.demonstrateVariablesAndNullSafety()
+        // If no exception and prints, we consider it demonstrated
+        assertTrue(true)
+    }
+
+    @Test
     fun `advanced collections`() {
         val topics = AdvancedKotlinTopics()
         topics.demonstrateAdvancedCollections()
